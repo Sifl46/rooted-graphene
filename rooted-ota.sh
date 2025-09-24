@@ -37,7 +37,7 @@ OTA_VERSION=${OTA_VERSION:-'latest'}
 # curl --fail -sL -I -o /dev/null -w '%{url_effective}' https://github.com/topjohnwu/Magisk/releases/latest | sed 's/.*\/tag\///;'
 # renovate: datasource=github-releases packageName=topjohnwu/Magisk versioning=semver-coerced
 DEFAULT_MAGISK_VERSION=v29.0
-MAGISK_VERSION=${MAGISK_VERSION:-${DEFAULT_MAGISK_VERSION}}
+MAGISK_VERSION=latest
 
 SKIP_CLEANUP=${SKIP_CLEANUP:-''}
 
