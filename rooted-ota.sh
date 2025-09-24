@@ -283,9 +283,9 @@ function downloadAndVerifyFromChenxiaolong() {
     curl --fail -sL "${url}" > "${downloadedZipFile}"
     curl --fail -sL "${url}.sig" > "${downloadedZipFile}.sig"
     
-    # Validate against author's public key
-    #ssh-keygen -Y verify -I chenxiaolong -f <(echo "chenxiaolong $CHENXIAOLONG_PK") -n file \
-      #-s "${downloadedZipFile}.sig" < "${downloadedZipFile}"
+     Validate against author's public key
+    ssh-keygen -Y verify -I chenxiaolong -f <(echo "chenxiaolong $CHENXIAOLONG_PK") -n file \
+      -s "${downloadedZipFile}.sig" < "${downloadedZipFile}"
     
     echo N | unzip "${downloadedZipFile}" -d .tmp
     rm "${downloadedZipFile}"*
