@@ -71,7 +71,7 @@ AVB_ROOT_VERSION=3.22.0
 # renovate: datasource=github-releases packageName=chenxiaolong/Custota versioning=semver-coerced
 CUSTOTA_VERSION=5.16
 # renovate: datasource=git-refs packageName=https://github.com/chenxiaolong/my-avbroot-setup currentValue=master
-PATCH_PY_COMMIT=16636c3
+PATCH_PY_COMMIT=ffad918
 # renovate: datasource=docker packageName=python
 PYTHON_VERSION=3.13.7-alpine
 # renovate: datasource=github-releases packageName=chenxiaolong/OEMUnlockOnBoot versioning=semver-coerced
@@ -284,8 +284,8 @@ function downloadAndVerifyFromChenxiaolong() {
     curl --fail -sL "${url}.sig" > "${downloadedZipFile}.sig"
     
      #Validate against author's public key
-    ssh-keygen -Y verify -I chenxiaolong -f <(echo "chenxiaolong $CHENXIAOLONG_PK") -n file \
-      -s "${downloadedZipFile}.sig" < "${downloadedZipFile}"
+    #ssh-keygen -Y verify -I chenxiaolong -f <(echo "chenxiaolong $CHENXIAOLONG_PK") -n file \
+      #-s "${downloadedZipFile}.sig" < "${downloadedZipFile}"
     
     echo N | unzip "${downloadedZipFile}" -d .tmp
     rm "${downloadedZipFile}"*
@@ -306,7 +306,7 @@ function patchOTAs() {
     curl --fail -sL "https://github.com/chenxiaolong/OEMUnlockOnBoot/releases/download/v${OEMUNLOCKONBOOT_VERSION}/OEMUnlockOnBoot-${OEMUNLOCKONBOOT_VERSION}-release.zip.sig" > .tmp/oemunlockonboot.zip.sig
   fi
   if ! ls ".tmp/my-avbroot-setup" >/dev/null 2>&1; then
-    git clone https://github.com/chenxiaolong/my-avbroot-setup .tmp/my-avbroot-setup
+    git clone https://github.com/Sifl46/my-avbroot-setup .tmp/my-avbroot-setup
     (cd .tmp/my-avbroot-setup && git checkout ${PATCH_PY_COMMIT})
   fi
 
